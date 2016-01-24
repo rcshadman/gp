@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if title %}
+        Update | {{ title }}
+     {% else %}
+        Create | {{ block.super }}
+    {% endif %}
+{% endblock title%}
+
+{% block content %}
+<h1>{% if title %}
+        Update 
+     {% else %}
+        Create 
+    {% endif %}
+</h1>
+<form method='POST' action='.'>{% csrf_token %}
+{{form.as_p}}
+<input type='submit' value='Create'>
+
+</form>
+{%endblock content %}

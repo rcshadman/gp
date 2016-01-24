@@ -1,0 +1,23 @@
+{% load staticfiles %}
+<html>
+<body>
+    <head>
+        <title>{% block title %} demo{% endblock %}</title>
+        <!-- {% static "/css/style.css" %} /static/css/style.css -->
+        <link rel= "stylesheet" href="{% static "css/style.css" %} ">
+    </head>
+
+    <div class='side-nav'>
+        {% include "navigation.html" %}
+    </div>
+    <div class='container'>
+        {% include "readnext.html" %}
+    </div>
+
+    <div class='container'>
+        {% block content %}
+        {% endblock %}
+    </div>
+      
+</body>
+</html>

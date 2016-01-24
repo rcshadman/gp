@@ -1,6 +1,6 @@
-<html>
-<body>
-    
+{% extends "base.html" %}
+
+{% block content %}
     <h1>{{ title }}</h1>
         {{ detail.bodytext }}<br/>
         {{ detail.category }}<br/>
@@ -9,5 +9,4 @@
         {{ detail.author }}<br/>
         {{ detail.optional_image }}<br/>
         
-</body>
-</html>
+{%endblock content %}
