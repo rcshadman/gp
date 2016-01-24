@@ -36,7 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'demo'
+    'demo',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -50,6 +50,24 @@ MIDDLEWARE_CLASSES = (
 )
 
 ROOT_URLCONF = 'gp.urls'
+
+# TEMPLATES = [
+#     {
+#         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+#         'DIRS': [os.path.join(BASE_DIR, "templates")],
+#         'APP_DIR': True,
+#         'OPTIONS': {
+
+#             'context_processors': [
+#                 'django.template.context_processors.debug',
+#                 'django.template.context_processors.request',
+#                 'django.contrib.auth.context_processors.auth',
+#                 'django.contrib.mesages.context_processors.mesages'
+#             ]
+#         }
+
+#     }
+# ]
 
 WSGI_APPLICATION = 'gp.wsgi.application'
 
