@@ -17,9 +17,9 @@
         <div class='col-sm-12'>
             <a href="{{random_post.get_abs_url}}">
                 {% if random_post.hero_image %}
-                    <img style="height:50%;width:100%" src="{{ random_post.hero_image.url }}">
+                    <img style="height:50%;width:100%;border:1px solid black;" src="{{ random_post.hero_image.url }}">
                 {%else%}
-                    <img style="height:50%;width:100%" src="#" alt="{{random_post.title}}">
+                    <img style="height:50%;width:100%;border:1px solid black;" src="#" alt="{{random_post.title}}">
                 {% endif %}
 
             </a>

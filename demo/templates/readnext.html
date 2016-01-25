@@ -31,14 +31,18 @@
         {% endif %}
 
         {% if each.hero_image %}
-            <img style="height:30%;width:100%" src="{{ each.hero_image.url }}">
+            <a href="{{each.get_abs_url}}">
+            <img style="height:30%;width:100%;border:1px solid black;" src="{{ each.hero_image.url }}">
+            </a>
         {%else%}
-            <img style="height:30%;width:100%;" src="#" alt="{{each.title}}">
+            <a href="{{each.get_abs_url}}">
+            <img style="height:30%;width:100%;border:1px solid black;" src="#" alt="{{each.title}}">
+            </a>
         {% endif %}
 
 
         
-            <h4><a href="{{each.get_abs_url}}" class="">{{ each.title | truncatewords:3 }}</a></h4>
+            <h4><a href="{{each.get_abs_url}}">{{ each.title | truncatewords:3 }}</a></h4>
           </div>
        
        </div> 

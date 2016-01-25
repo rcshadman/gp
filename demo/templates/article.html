@@ -17,9 +17,9 @@
     <div class='row'>    
         <div class='col-sm-12'>
             {% if detail.hero_image %}
-                 <img style="height:55%;width:100%" src="{{ detail.hero_image.url }}">
+                 <img style="height:55%;width:100%;border:1px solid black;" src="{{ detail.hero_image.url }}">
             {%else%}
-                <img style="height:55%;width:100%" src="#" alt="{{detail.title}}">
+                <img style="height:55%;width:100%;border:1px solid black;" src="#" alt="{{detail.title}}">
             {% endif %}
 
         </div>
@@ -30,9 +30,9 @@
         </div>
         <div class='col-sm-4'>
             {% if detail.optional_image %}
-                 <img style="height:45%;width:100%" src="{{ detail.optional_image.url }}">
+                 <img style="height:45%;width:100%;border:1px solid black;" src="{{ detail.optional_image.url }}">
             {%else%}
-                <img style="height:45%;width:100%" src="#" alt="{{detail.title}}">
+                <img style="height:45%;width:100%;border:1px solid black;" src="#" alt="{{detail.title}}">
             {% endif %}
             
         </div>

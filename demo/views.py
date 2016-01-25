@@ -6,16 +6,16 @@ import random
 
 # Create your views here.
 
+def random_function(all_posts):
+    return random.choice(all_posts)
 
 def get_random_post(num):
-    all_posts = Post.objects.all()
     result = []
-    all_posts.count()
+    all_posts = Post.objects.all()
     for each in range(num):
-        post=random.choice(all_posts)
-        if post in result:
-            post=random.choice(all_posts)
+        post=random_function(all_posts)
         result.append(post)
+        all_posts = all_posts.exclude(id=post.id)
     return result
 
 
