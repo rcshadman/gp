@@ -42,7 +42,7 @@ def article(request, id):
 
 
 def create(request):
-    form = Form(request.POST or None)
+    form = Form(request.POST or None,request.FILES or None)
     context = {
         'form': form,
     }
@@ -54,7 +54,7 @@ def create(request):
 
 def update(request, id=None):
     detail = get_object_or_404(Post, id=id)
-    form = Form(request.POST or None, instance=detail)
+    form = Form(request.POST or None,request.FILES or None, instance=detail)
     context = {
         'title': detail.title,
         'detail': detail,
