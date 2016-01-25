@@ -1,0 +1,24 @@
+<ul class='nav'>
+        <li>
+            <img style='width:100%;height:20%;margin:0;' src='#'/>
+        </li>
+        <li style="border:1px solid #777777;">
+            <ui><a href="#" ><img style='width:47%;height:5%;margin:0;' src='#'/></a></ui>
+            <ui><span style="border-right: 1px solid #777777;height: 100%;"></span></ui>
+            <ui><a href='#'><img style='float:right;width:46%;height:5%;margin:0;' src='#'/></ui></a>
+        </li>
+        <li class="floating-box">
+            
+            {% for each in ""|ljust:"5" %}
+            <ui >
+                <span style="padding:25%">
+                    <a href='#'><img style="width:50%;height:50;" src='#'/></a>
+                    <a href='#'><p style="text-align:center;color:00BFFF">Nav{{forloop.counter}}</p></a>
+                </span>
+            </ui>
+           
+            {% endfor %}
+        </li>
+         
+</ul>
+ 

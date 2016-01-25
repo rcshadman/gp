@@ -1,0 +1,29 @@
+<div class='container-fluid'>
+  
+    <div class='row' >
+      
+
+      {% for each in read_next %}
+      
+      <div class="col-sm-2" style="padding:0">
+        <div >
+          
+          <img src="..." alt="...">
+          
+          <div class="">
+            
+            <h3>
+              <a href="#" class="">{{ each.title | truncatewords:5 }}</a>
+            </h3>
+
+          </div>
+        </div>
+       </div> 
+      
+      {% endfor %}
+     
+
+        
+
+    </div>
+  </div>

@@ -1,12 +1,32 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>{{ title }}</h1>
-        {{ detail.bodytext }}<br/>
-        {{ detail.category }}<br/>
-        {{ detail.hero_image }}<br/>
-        {{ detail.publication_date }}<br/>
-        {{ detail.author }}<br/>
-        {{ detail.optional_image }}<br/>
+   
+
+<div class='container-fluid'>
+    <div class='row'>
+        <div class='col-sm-12'>
+            <h1>{{ title }}</h1>
+        </div>
+    </div>    
+    <div class='row'>
+        <div class='col-sm-12'>
+            <span class="date">{{ detail.publication_date|date:"l, F jS, Y"  }}</span> | <span class="author">{{ detail.author  }}</span>
+        </div>
+    </div>
+    <div class='row'>    
+        <div class='col-sm-12'>
+            <img style="height:55%;width:100%" src="#">
+        </div>
+    </div>
+    <div class='row'>    
+        <div class='col-sm-8'>
+            <div>{{ detail.bodytext }}</div>
+        </div>
+        <div class='col-sm-4'>
+            <img style="height:35%;width:100%" src="#">
+        </div>
+    </div>
+</div>
         
 {%endblock content %}

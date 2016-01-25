@@ -1,16 +1,60 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>{{ title }}</h1>
-    {% for each in post_list %}
-        
-        <!-- {% url "article" id=each.id %} -->
-        <a href='{{each.get_abs_url}}'>{{ each.title }}</a><br/>
-        {{ each.category }}<br/>
-        {{ each.publication_date }}<br/>
-        {{ each.author }}<br/>
-        <br/>
-        <br/>
+
+<div class='container-fluid'>
+    <div class='row'>
+        <div class='col-sm-12'>
+            <h1>{{ title }}</h1>
+        </div>
+    </div>    
+    <div class='row'>
+        <div class='col-sm-12'>
+            <span class="date">{{ random_post.publication_date|date:"l, F jS, Y" }}</span> | <span class="author">{{ random_post.author  }}</span>
+        </div>
+    </div>
+    <div class='row'>    
+        <div class='col-sm-12'>
+            <a href="{{random_post.get_abs_url}}">
+                <img style="height:50%;width:100%" src="#">
+            </a>
+        </div>
+    </div>
+    <div class='row'>    
+        <div class='col-sm-9'>
+            {{ random_post.bodytext }}
+        </div>
+    </div>
+</div>
+
+{% for each in post_list %}
+    
+<div class='container-fluid'>
+    <div class='row'>
+        <div class='col-sm-8 col-sm-offset-2'>
+            <h2 class="title">{{ each.title }}</h2>
+        </div>
+    </div>
+   
+    <div class='row'>
+        <div class='col-sm-2'>
+                {# {% url "article" id=each.id %} #}
+                <div style="height:70px;width:70px;border:2px solid;border-radius: 50%;text-align:center;
+                font-size:30px" >
+                <div style="padding-top:10px">{{forloop.counter}}</div>
+                </div>
+                {# <img style="height:20%;width:100%"src="#"/> #}
+            
+        </div>
+        <div class='col-sm-8'>
+            
+            <div>{{ each.bodytext|truncatechars:200|linebreaks }}</div>
+            <div><a href='{{each.get_abs_url}}'>View</a> </div>
+        </div>
+
+    </div>
+    
+</div>
        
     {% endfor %}    
 {%endblock content %}
