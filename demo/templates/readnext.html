@@ -29,8 +29,16 @@
         {% else %}
           <div style="margin-right:5px;margin-left:5px">
         {% endif %}
-        <img style="width:100%;height:30%" src="..." alt="...">
-            <h4><a href="#" class="">{{ each.title | truncatewords:3 }}</a></h4>
+
+        {% if each.hero_image %}
+            <img style="height:30%;width:100%" src="{{ each.hero_image.url }}">
+        {%else%}
+            <img style="height:30%;width:100%;" src="#" alt="{{each.title}}">
+        {% endif %}
+
+
+        
+            <h4><a href="{{each.get_abs_url}}" class="">{{ each.title | truncatewords:3 }}</a></h4>
           </div>
        
        </div> 

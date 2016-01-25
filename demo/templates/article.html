@@ -16,15 +16,25 @@
     </div>
     <div class='row'>    
         <div class='col-sm-12'>
-            <img style="height:55%;width:100%" class="img-responsive" src="{{ detail.image.url}}">
+            {% if detail.hero_image %}
+                 <img style="height:55%;width:100%" src="{{ detail.hero_image.url }}">
+            {%else%}
+                <img style="height:55%;width:100%" src="#" alt="{{detail.title}}">
+            {% endif %}
+
         </div>
     </div>
     <div class='row'>    
         <div class='col-sm-8'>
-            <div>{{ detail.bodytext }}</div>
+            <div>{{ detail.bodytext|linebreaks }}</div>
         </div>
         <div class='col-sm-4'>
-            <img style="height:35%;width:100%" src="#">
+            {% if detail.optional_image %}
+                 <img style="height:45%;width:100%" src="{{ detail.optional_image.url }}">
+            {%else%}
+                <img style="height:45%;width:100%" src="#" alt="{{detail.title}}">
+            {% endif %}
+            
         </div>
     </div>
 </div>
