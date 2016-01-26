@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'demo',
+    'rest_framework',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -112,3 +113,8 @@ STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR),"static_server")
 
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR),"media_server")
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+    )
+}

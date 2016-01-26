@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect, HttpResponse, HttpResponseRedirect, get_object_or_404
+from rest_framework import generics
+from .serializers import PostSerializer
 from .models import Post
 from .forms import Form
 import random
@@ -6,17 +8,37 @@ import random
 
 # Create your views here.
 
+
+class PostRestList(generics.ListCreateAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+
+class PostRestDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+
 def random_function(all_posts):
     return random.choice(all_posts)
+
 
 def get_random_post(num):
     result = []
     all_posts = Post.objects.all()
     for each in range(num):
-        post=random_function(all_posts)
+        post = random_function(all_posts)
         result.append(post)
         all_posts = all_posts.exclude(id=post.id)
     return result
+
+
+def vue_list(request):
+    return render(request, "vue_list.html")
+
+
+def vue_detail(request):
+    return render(request, "vue_detail.html")
 
 
 def list(request):
@@ -24,8 +46,8 @@ def list(request):
     context = {
         'title': 'Top 10 List',
         'post_list': all_posts,
-        'random_post':get_random_post(1)[0],
-        'read_next':get_random_post(4)
+        'random_post': get_random_post(1)[0],
+        'read_next': get_random_post(4)
     }
     return render(request, "list.html", context)
 
@@ -35,14 +57,14 @@ def article(request, id):
     context = {
         'title': detail.title,
         'detail': detail,
-        'random_post':get_random_post(1),
-        'read_next':get_random_post(4)
-        }
+        'random_post': get_random_post(1),
+        'read_next': get_random_post(4)
+    }
     return render(request, "article.html", context)
 
 
 def create(request):
-    form = Form(request.POST or None,request.FILES or None)
+    form = Form(request.POST or None, request.FILES or None)
     context = {
         'form': form,
     }
@@ -54,7 +76,7 @@ def create(request):
 
 def update(request, id=None):
     detail = get_object_or_404(Post, id=id)
-    form = Form(request.POST or None,request.FILES or None, instance=detail)
+    form = Form(request.POST or None, request.FILES or None, instance=detail)
     context = {
         'title': detail.title,
         'detail': detail,
