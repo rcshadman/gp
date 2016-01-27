@@ -9,15 +9,10 @@
     </div>    
     <div class='row'>
         <div class='col-sm-12'>
-            <span class="date">{{ datarandom.publication_date }}</span> | <span class="author">{{ datarandom.author  }}</span>
+            <span class="date">{{ datarandom.publication_date | date "%A, %B %e, %Y"  }}</span> | <span class="author">{{ datarandom.author  }}</span>
         </div>
     </div>
-
     
-           
-            {{ message }}
-       
-
     <div class='row'>    
         <div class='col-sm-12'>
             <a href="">
@@ -27,7 +22,7 @@
     </div>
     <div class='row'>    
         <div class='col-sm-9'>
-            {{ datarandom.bodytext }}
+            {{ datarandom.bodytext | truncate 1000 ' ...' }}
         </div>
     </div>
 </div>
@@ -48,7 +43,7 @@
                 
         </div>
         <div class='col-sm-8'>
-            <div>{{ each.bodytext }}</div>
+            <div>{{ each.bodytext | truncate 250 '...'}}</div>
             <div><a href=''>View</a> </div>
         </div>
 

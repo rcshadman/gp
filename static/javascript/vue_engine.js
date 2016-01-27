@@ -1,3 +1,10 @@
+var filters = {
+        truncate: function(string, value){
+            return string.substring(0, value) + '...';
+          },
+      }
+
+
 var model={
     allPost:[],
     randomPost:{},
@@ -76,7 +83,13 @@ new Vue({
                     }
             },
         ready:function(){},
-        methods:{},          
+        methods:{},
+        filters: {
+                truncate: function(string, value){
+                return string.substring(0, value) + '...';
+                },
+      }
+       
 })
 
 
