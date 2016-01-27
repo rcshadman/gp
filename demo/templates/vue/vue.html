@@ -12,31 +12,28 @@
     </head>
 <body>
     
-    <div id="App" class="container-fluid">
-        <!-- <div >
-            {% verbatim %}
-                <a v-for="post in allPost">
-                    <span><h3>{{post.id}}</h3></td>
-                </a>
-            {%endverbatim%}
-        </div>  -->  
-
-        <div class="row">
-            <div id="navigation" class='col-sm-2' style='margin-top:3%'>
-                <navigation></navigation>
-            </div>
+    <div class="container-fluid">
+        <div  id="App" >
+            <div class="row">
+                <div id="navigation" class='col-sm-2' style='margin-top:3%'>
+                    <navigation></navigation>
+                </div>
             
-            <div class='col-sm-10'>
-                {% block content %}{% endblock %}
-            </div>
+                <div class='col-sm-10'>
+                    {% block content %}{% endblock %}
+                </div>
 
-        </div>
-        <div class="row">
-            <div id = "readnext" class='col-sm-10 col-sm-offset-2' >
-              <readnext></readnext>
             </div>
-        </div>
+            <div class="row">
+                <div id = "readnext" class='col-sm-10 col-sm-offset-2' >
+                {% verbatim %}
+                    <readnext :datamodel='model' :datarandomfour='readNext' :dataallpost='allPost' :datarandom='randomPost'>
+                    </readnext>
+                {% endverbatim %}
+                </div>
+            </div>
          
+         </div>
         
     </div>
     

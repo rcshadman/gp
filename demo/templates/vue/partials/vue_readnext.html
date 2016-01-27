@@ -1,60 +1,56 @@
+
 <script type="text/x-template" id="readnext_temp">
+{% verbatim %}
 <div class='container-fluid'>
   
     <div class='row'style="padding:0;height:50px;padding:0;border-bottom:1px solid black;border-top:1px solid black;">
-      
-      <div class="col-sm-6" style="padding:0">
-        <span style="font-size:36px;font-family:inherit;font-weight:500;">What To Read Next
-        </span>
-      </div>
-        
-      <div class="col-sm-6" style="padding:0">
-        <span class="pull-right" style="margin:0 0 1.8% 0"> 
-              <button class="btn " style="padding:0;background-color:white;color:#00CCFF;font-size:30px"><b> < </b></button> |
-              <button class="btn " style="padding:0;background-color:white;color:#00CCFF;font-size:30px"><b> > </b></button>
+          
+          <div class="col-sm-6" style="padding:0">
+            <span style="font-size:36px;font-family:inherit;font-weight:500;">What To Read Next
             </span>
-      </div>
-    </div>
-    
-    <div class='row' >
-      
-      
-       
-
-      <div v-for="each in readnext" class="col-sm-3" style="margin-top:15px;padding:0;">  
-         <h1>adda</h1>
-        
-          <div v-if="$index === 1" style="margin-left:0;margin-right:5px">
-        
-          <div v-if="$index === 4" style="margin-left:5px;margin-right:0">
-        
-          <div v-else style="margin-right:5px;margin-left:5px">
-       
-
-        
-            <a v-if="each.hero_image" href="vue/{{each.id}}">
-            <img style="height:30%;width:100%;border:1px solid black;" src="{{ each.hero_image }}">
-            </a>
-        
-            <a v-else href="vue/{{each.id}}">
-            <img style="height:30%;width:100%;border:1px solid black;" src="#" alt="{{each.title}}">
-            </a>
-        
-
-
-        
-            <h4><a href="vue/{{each.id}}">{{ each.title | truncatewords:3 }}</a></h4>
           </div>
-       
-       </div> 
-
-       
-      
-      
-     
-
-        
-
+            
+          <div class="col-sm-6" style="padding:0">
+            <span class="pull-right" style="margin:0 0 1.8% 0"> 
+                  <button class="btn " style="padding:0;background-color:white;color:#00CCFF;font-size:30px"><b> < </b></   button> |
+                  <button class="btn " style="padding:0;background-color:white;color:#00CCFF;font-size:30px"><b> > </b></   button>
+                </span>
+          </div>
     </div>
+        
+    <div class='row' >
+          
+          <h3>{{ datamodel.allPost.length }}-{{ datarandomfour.length }}</h3>
+           <div  v-for="each in datarandomfour"  track-by="$index" class="col-sm-3" style="margin-top:15px;padding:0;">  
+              <div v-if="$index == 0" style="margin-left:0;margin-right:5px">
+                  <a href="/{{ each.id }}">
+                  <img style="height:30%;width:100%;border:1px solid black;" :src=each.hero_image />
+                  </a>
+                  <h4><a href="/{{ each.id }}">{{ each.title }}</a></h4>
+              </div>  
+              
+              <div v-if="$index == 3" style="margin-left:5px;margin-right:0">
+                  <a href="/{{ each.id }}">
+                  <img style="height:30%;width:100%;border:1px solid black;" :src=each.hero_image />
+                  </a>
+                  <h4><a href="/{{ each.id }}">{{ each.title }}</a></h4>
+              </div>
+             
+              <div v-if="$index == 1" style="margin-right:5px;margin-left:5px">
+                  <a href="/{{ each.id }}">
+                  <img style="height:30%;width:100%;border:1px solid black;" :src=each.hero_image />
+                  </a>
+                  <h4><a href="/{{ each.id }}">{{ each.title}}</a></h4>
+              </div>
+              <div v-if="$index == 2" style="margin-right:5px;margin-left:5px">
+                  <a href="/{{ each.id }}">
+                  <img style="height:30%;width:100%;border:1px solid black;" :src=each.hero_image />
+                  </a>
+                  <h4><a href="/{{ each.id }}">{{ each.title}}</a></h4>
+              </div>
+           
+           </div> 
+      </div>
   </div>
+  {% endverbatim %}
   </script>

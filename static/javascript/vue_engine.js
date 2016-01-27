@@ -1,64 +1,36 @@
+var model={
+    allPost:[],
+    randomPost:{},
+    readNext:[]
+};
+
+
 var pickRandomPost = function(array){
     return array[Math.floor(Math.random()*array.length)];
 }
 
-var App = new Vue({
-    el:'#App',
-    
-    data:{
-        message:'Hello',
-        allPost:[],
-        readnext:[],
-        randompost:{}
-
-    },
-    
-    methods:{
-        
-        generateRandom:function(num){
+var generateRandom = function(num,array){
                             result=[];
                             allpost=[];
-                            allpost = allpost.concat(this.allPost);
+                            allpost = allpost.concat(this.array);
                             for(var i=1; i<= num ;i++ )
-                            {   randpost = pickRandomPost(allpost);
+                            {   randpost = pickRandomPost(array);
                                 result.push(randpost);
                                 index = allpost.indexOf(randpost);
                                 allpost.splice(index-1,1);
                             }
-                            if(num===4){this.$set('readnext',result);}
-                            else
-                            if(num===1){this.$set('randompost',result[0]);} 
-                            console.log(result)
+                            return result;
 
-                            },
-        fetchAllPost:function(){
-                            this.$http.get('api/')
-                            .success(function(response){ this.$set(
-                                'allPost', response); 
-                                console.log(this.allPost);
-                                this.generateRandom(1);
-                                this.generateRandom(4);
-                                
-                            })
-                            .error(function(error) { console.log(error); } );
-                            },
-        fetchPostWithId:function(id){
+                            }
+
+
+
+var fetchPostWithId = function(id){
                             url="/api"+id
                             this.$http.get(url)
                             .success(function(response){ this.$set('postById', response); console.log(response);} )
                             .error(function(error) { console.log(error); } );
-                            }
-    
-             },
-        ready:function(){
-                        this.fetchAllPost();
-                        
-                        
-                        },
-    
-
-
-})
+                            }                            
 
 
 var navigation = Vue.extend({
@@ -75,26 +47,87 @@ new Vue({
 
 
 
-var readnext = Vue.extend({
-    template: '#readnext_temp',
-    props: {
-        readnext: Array,
-        },
-    data:{
-        readnext:readnext
-    }
-  }
-})
+// var readnext = Vue.extend({
+//     template: '#readnext_temp',
+    
+  
+// })
 // register
-Vue.component('readnext', readnext)
+// Vue.component('readnext', readnext)
 
 // create a root instance
 new Vue({
-  el: '#readnext'
+        el: '#readnext',
+      data:model,
+    components:{
+        'readnext':{
+            template:'#readnext_temp',
+            props: {
+                datamodel:Object,
+                dataallpost:Array,
+                datarandomfour:Array,
+                datarandom:Object,
+                
+
+            },
+        
+
+                    }
+            },
+        ready:function(){
+                // this.$set('model',{})    
+                // this.generateRandomPosts()
+
+            },
+        methods:{
+
+        
+        },          
+
+
+
 })
 
-// Vue.partial('navigation', '<h1>This is a partial!</h1>')
 
+
+
+
+var App = new Vue({
+    el:'#App',
+    
+    data:model,
+    
+    methods:{
+     
+         fetchAllPost:function(){
+                            this.$http.get('api/')
+                            .success(function(response){ 
+                                this.$set('allPost', response);
+                                this.$set('model.allPost', this.allPost);
+                                
+                                randompost=pickRandomPost(this.allPost);
+                                this.$set('randomPost',randompost);
+                                this.$set('model.randomPost',randompost);
+                                setTimeout(1200);
+                                
+                                randomfour=generateRandom(4,this.allPost);
+                                this.$set('readNext',randomfour);
+                                this.$set('model.readNext',randomfour);
+                                console.log(randomfour);
+                                
+                                })
+                            
+                            }
+    
+             },
+        ready:function(){
+                        this.fetchAllPost();
+                        
+                        
+                        },
+  
+
+})
 
 
 
