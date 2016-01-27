@@ -20,8 +20,7 @@
         
     <div class='row' >
           
-          <h3>{{ datamodel.allPost.length }}-{{ datarandomfour.length }}</h3>
-           <div  v-for="each in datarandomfour"  track-by="$index" class="col-sm-3" style="margin-top:15px;padding:0;">  
+          <div  v-for="each in datarandomfour"  track-by="$index" class="col-sm-3" style="margin-top:15px;padding:0;">  
               <div v-if="$index == 0" style="margin-left:0;margin-right:5px">
                   <a href="/{{ each.id }}">
                   <img style="height:30%;width:100%;border:1px solid black;" :src=each.hero_image />

@@ -19,17 +19,21 @@
                     <navigation></navigation>
                 </div>
             
-                <div class='col-sm-10'>
-                    {% block content %}{% endblock %}
+                <div id="content" class='col-sm-10'>
+                    <div id="list">
+                        <list :datamodel='model' :dataallpost='allPost' :datarandom='randomPost'></list>
+                    </div>
+                    
+                    
                 </div>
 
             </div>
+            
             <div class="row">
                 <div id = "readnext" class='col-sm-10 col-sm-offset-2' >
-                {% verbatim %}
                     <readnext :datamodel='model' :datarandomfour='readNext' :dataallpost='allPost' :datarandom='randomPost'>
                     </readnext>
-                {% endverbatim %}
+                
                 </div>
             </div>
          
@@ -44,12 +48,15 @@
      
 {% include "vue/partials/vue_navigation.html" %} 
 {% include "vue/partials/vue_readnext.html" %}
+{% include "vue/partials/vue_list.html" %}
+
     <!-- Latest compiled and minified JavaScript -->
  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 <script type="text/javascript" src='{% static "javascript/vue.js" %}'></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.7.0/vue-resource.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue-router/0.7.10/vue-router.js"></script>>
 <script type="text/javascript" src='{% static "javascript/vue_engine.js" %}'></script>
 
 

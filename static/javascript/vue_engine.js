@@ -5,23 +5,17 @@ var model={
 };
 
 
-var pickRandomPost = function(array){
-    return array[Math.floor(Math.random()*array.length)];
+
+function generateRandom(count,arr) {
+    var shuffled = arr.slice(0), i = arr.length, min = i - count, temp, index;
+    while (i-- > min) {
+        index = Math.floor((i + 1) * Math.random());
+        temp = shuffled[index];
+        shuffled[index] = shuffled[i];
+        shuffled[i] = temp;
+    }
+    return shuffled.slice(min);
 }
-
-var generateRandom = function(num,array){
-                            result=[];
-                            allpost=[];
-                            allpost = allpost.concat(this.array);
-                            for(var i=1; i<= num ;i++ )
-                            {   randpost = pickRandomPost(array);
-                                result.push(randpost);
-                                index = allpost.indexOf(randpost);
-                                allpost.splice(index-1,1);
-                            }
-                            return result;
-
-                            }
 
 
 
@@ -31,6 +25,9 @@ var fetchPostWithId = function(id){
                             .success(function(response){ this.$set('postById', response); console.log(response);} )
                             .error(function(error) { console.log(error); } );
                             }                            
+
+
+
 
 
 var navigation = Vue.extend({
@@ -45,47 +42,41 @@ new Vue({
 })
 
 
-
-
-// var readnext = Vue.extend({
-//     template: '#readnext_temp',
-    
-  
-// })
-// register
-// Vue.component('readnext', readnext)
-
 // create a root instance
 new Vue({
         el: '#readnext',
       data:model,
     components:{
         'readnext':{
-            template:'#readnext_temp',
-            props: {
-                datamodel:Object,
-                dataallpost:Array,
-                datarandomfour:Array,
-                datarandom:Object,
-                
-
-            },
-        
-
+                template:'#readnext_temp',
+                props: {
+                    datamodel:Object,
+                    dataallpost:Array,
+                    datarandomfour:Array,
+                    datarandom:Object,
+                        },
                     }
             },
-        ready:function(){
-                // this.$set('model',{})    
-                // this.generateRandomPosts()
+        ready:function(){},
+        methods:{},          
+})
 
+
+new Vue({
+        el: '#list',
+      data:model,
+    components:{
+        'list':{
+                template:'#list_temp',
+                props: {
+                    datamodel:Object,
+                    dataallpost:Array,
+                    datarandom:Object,
+                        },
+                    }
             },
-        methods:{
-
-        
-        },          
-
-
-
+        ready:function(){},
+        methods:{},          
 })
 
 
@@ -94,20 +85,17 @@ new Vue({
 
 var App = new Vue({
     el:'#App',
-    
     data:model,
-    
     methods:{
-     
-         fetchAllPost:function(){
+        fetchAllPost:function(){
                             this.$http.get('api/')
                             .success(function(response){ 
                                 this.$set('allPost', response);
                                 this.$set('model.allPost', this.allPost);
                                 
-                                randompost=pickRandomPost(this.allPost);
-                                this.$set('randomPost',randompost);
-                                this.$set('model.randomPost',randompost);
+                                randompost=generateRandom(1,this.allPost);
+                                this.$set('randomPost',randompost[0]);
+                                this.$set('model.randomPost',randompost[0]);
                                 setTimeout(1200);
                                 
                                 randomfour=generateRandom(4,this.allPost);
@@ -120,14 +108,19 @@ var App = new Vue({
                             }
     
              },
-        ready:function(){
-                        this.fetchAllPost();
-                        
-                        
-                        },
-  
-
+        ready:function(){this.fetchAllPost();},
 })
 
+var router = new VueRouter()
+router.map({
+    '/': {
+        component: Foo
+    },
+    '/bar': {
+        component: Bar
+    }
+})
 
+var Content = Vue.extend({})
+router.start(Content, '#content')
 
