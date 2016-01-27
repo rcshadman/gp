@@ -33,12 +33,15 @@ def get_random_post(num):
     return result
 
 
-def vue_list(request):
-    return render(request, "vue_list.html")
+def vue(request):
+    return render(request, "vue/vue.html")
+
+# def vue_list(request):
+#     return render(request, "vue/vue_list.html")
 
 
-def vue_detail(request):
-    return render(request, "vue_detail.html")
+# def vue_article(request,id):
+#     return render(request, "vue/vue_article.html")
 
 
 def list(request):
@@ -49,7 +52,7 @@ def list(request):
         'random_post': get_random_post(1)[0],
         'read_next': get_random_post(4)
     }
-    return render(request, "list.html", context)
+    return render(request, "django/list.html", context)
 
 
 def article(request, id):
@@ -60,7 +63,7 @@ def article(request, id):
         'random_post': get_random_post(1),
         'read_next': get_random_post(4)
     }
-    return render(request, "article.html", context)
+    return render(request, "django/article.html", context)
 
 
 def create(request):
@@ -71,7 +74,7 @@ def create(request):
     if form.is_valid():
         new_post = form.save()
         return HttpResponseRedirect(new_post.get_abs_url())
-    return render(request, "create.html", context)
+    return render(request, "django/create.html", context)
 
 
 def update(request, id=None):
@@ -86,7 +89,7 @@ def update(request, id=None):
         detail = form.save()
         return HttpResponseRedirect(detail.get_abs_url())
 
-    return render(request, "create.html", context)
+    return render(request, "django/create.html", context)
 
 
 def delete(request, id=None):

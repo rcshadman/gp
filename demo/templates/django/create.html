@@ -1,0 +1,32 @@
+{% extends "django/base.html" %}
+
+{% block title %}
+    {% if title %}
+        Update | {{ title }}
+     {% else %}
+        Create | {{ block.super }}
+    {% endif %}
+{% endblock title%}
+
+{% block content %}
+
+<div class='container-fluid'>
+    <div class='row'>
+        <div class='col-sm-12'>
+            <h1>{% if title %} Update {% else %}Create {% endif %}</h1>
+        </div>
+    </div>    
+    <div class='row'>
+        <div class='col-sm-12'>
+            <form method='POST' action='' enctype="multipart/form-data">{% csrf_token %}
+                {{form.as_p}}
+                <input class="btn btn-primary" type='submit' value='{% if title %} Update {% else %}Create {% endif %}'>
+
+            </form>
+        </div>
+    </div>
+   
+
+
+
+{%endblock content %}

@@ -1,0 +1,79 @@
+{% extends "vue/partials/vue_base.html" %}
+
+{% block content %}
+
+<div class='container-fluid'>
+    <div class='row'>
+        <div class='col-sm-12'>
+            <h1>{{ title }}</h1>
+        </div>
+    </div>    
+    <div class='row'>
+        <div class='col-sm-12'>
+            <span class="date">{{ random_post.publication_date|date:"l, F jS, Y" }}</span> | <span class="author">{{ random_post.author  }}</span>
+        </div>
+    </div>
+
+    
+     {% verbatim %}
+    <div id='head'>
+        <div class='row'>
+            <div class='col-sm-12'>
+           
+            {{ message }}
+            
+            </div>
+        </div>
+        
+    </div>
+    {% endverbatim %}
+    
+
+    <div class='row'>    
+        <div class='col-sm-12'>
+            <a href="{{random_post.get_abs_url}}">
+                {% if random_post.hero_image %}
+                    <img style="height:50%;width:100%;border:1px solid black;" src="{{ random_post.hero_image.url }}">
+                {%else%}
+                    <img style="height:50%;width:100%;border:1px solid black;" src="#" alt="{{random_post.title}}">
+                {% endif %}
+
+            </a>
+        </div>
+    </div>
+    <div class='row'>    
+        <div class='col-sm-9'>
+            {{ random_post.bodytext|linebreaks|truncatewords:120 }}
+        </div>
+    </div>
+</div>
+
+{% for each in post_list %}
+    
+<div class='container-fluid'>
+    <div class='row'>
+        <div class='col-sm-8 col-sm-offset-2'>
+            <h2 class="title">{{ each.title }}</h2>
+        </div>
+    </div>
+   
+    <div class='row'>
+        <div class='col-sm-2'>
+                {# {% url "article" id=each.id %} #}
+                <div style="margin-top:10%;margin-left:50%;height:70px;width:70px;border:2px solid;border-radius: 50%;text-align:center;font-size:30px" >
+                <div style="padding-top:10px">{{forloop.counter}}</div>
+                </div>
+                {# <img style="height:20%;width:100%"src="#"/> #}
+            
+        </div>
+        <div class='col-sm-8'>
+            <div>{{ each.bodytext|truncatechars:200|linebreaks }}</div>
+            <div><a href='{{each.get_abs_url}}'>View</a> </div>
+        </div>
+
+    </div>
+    
+</div>
+       
+    {% endfor %}    
+{%endblock content %}

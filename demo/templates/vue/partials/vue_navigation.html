@@ -1,0 +1,26 @@
+{% load staticfiles %}
+<script type="text/x-template" id="navigation_temp">
+    <ul class='nav' style="background-color: #777777;border:1px solid black;">
+        <li>
+            <img style='width:100%;height:20%;margin:0;' src='{% static "media/logo.jpg" %}'/>
+        </li>
+        <li style="border:1px solid black; background-color:white;">
+            <ui><a href="#" ><img style='width:35%;height:5%;margin:0 8% 0;padding:2% 6% 2%' src='{% static "media/menu2.png" %}'/></a></ui>
+            <ui><span style="border-right: 1px solid #777777;height: 100%;"></span></ui>
+            <ui><a href='#'><img style='float:right;width:35%;height:5%;margin:0 3% 0;padding:2% 6% 2%' src='{% static "media/search-glass.png" %}'/></ui></a>
+        </li>
+        <li class="floating-box" >
+            
+            {% for each in ""|ljust:"5" %}
+            <ui >
+                <span style="padding:25% ">
+                    <a href='#'><img style="width:50%;height:50;border:1px solid black;" src='#'/></a>
+                    <a href='#'><p style="text-align:center;color:00BFFF">Nav{{forloop.counter}}</p></a>
+                </span>
+            </ui>
+           
+            {% endfor %}
+        </li>
+         
+    </ul>
+</script>

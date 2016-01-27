@@ -6,8 +6,8 @@ from . import views
 urlpatterns = patterns('',
 
 
-                       url(r'^api/$', views.PostRestList.as_view()),
-                       url(r'^api/(?P<pk>\d+)/$',
+                       url(r'^vue/api/$', views.PostRestList.as_view()),
+                       url(r'^vue/api/(?P<pk>\d+)/$',
                            views.PostRestDetail.as_view()),
 
                        url(r'^$', views.list, name='list'),
@@ -18,8 +18,10 @@ urlpatterns = patterns('',
                        url(r'^(?P<id>\d+)/delete/$',
                            views.delete, name='delete'),
 
-                       url(r'^vue/$', views.vue_list, name='list'),
-                       url(r'^vue/(?P<id>\d+)/$', views.vue_article, name='article'),
+
+                       url(r'^vue/$', views.vue, name='vue'),
+                       # url(r'^vue/$', views.vue_list, name='list'),
+                       # url(r'^vue/(?P<id>\d+)/$', views.vue_article, name='article'),
 
 
 
