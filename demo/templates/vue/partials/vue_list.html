@@ -15,8 +15,8 @@
     
     <div class='row'>    
         <div class='col-sm-12'>
-            <a href="">
-                <img style="height:50%;width:100%;border:1px solid black;" :src=datarandom.hero_image.url>
+            <a v-link = "{ name: 'detail', params:{ postid:datarandom.id } }">
+                <img style="height:50%;width:100%;border:1px solid black;" :src=datarandom.hero_image>
               </a>
         </div>
     </div>
@@ -44,7 +44,7 @@
         </div>
         <div class='col-sm-8'>
             <div>{{ each.bodytext | truncate 250 '...'}}</div>
-            <div><a href=''>View</a> </div>
+            <div><a v-link = "{ name: 'detail', params:{ postid:each.id }}">View</a> </div>
         </div>
 
     </div>

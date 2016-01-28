@@ -13,31 +13,24 @@
 <body>
     
     <div class="container-fluid">
-        <div  id="App" >
-            <div class="row">
-                <div id="navigation" class='col-sm-2' style='margin-top:3%'>
-                    <navigation></navigation>
+        <!-- <div  id="App" v-cloak> -->
+                <div class="row">
+                        <div id="navigation" class='col-sm-2' style='margin-top:3%'>
+                            <navigation></navigation>
+                        </div>
+                         <div id="App" class='col-sm-10' v-cloak>
+                            <router-view></router-view>
+                        </div>
                 </div>
-            
-                <div id="content" class='col-sm-10'>
-                    <div id="list">
-                        <list :datamodel='model' :dataallpost='allPost' :datarandom='randomPost'></list>
+                <div class="row">
+                    <div id = "readnext" class='col-sm-10 col-sm-offset-2' >
+                        <readnext  :datarandomfour='readNext' :dataallpost='allPost' :datarandom='randomPost'>
+                        </readnext>
+                    
                     </div>
-
-
                 </div>
-
-            </div>
-            
-            <div class="row">
-                <div id = "readnext" class='col-sm-10 col-sm-offset-2' >
-                    <readnext :datamodel='model' :datarandomfour='readNext' :dataallpost='allPost' :datarandom='randomPost'>
-                    </readnext>
-                
-                </div>
-            </div>
          
-         </div>
+        <!-- </div> -->
         
     </div>
     
@@ -48,7 +41,9 @@
      
 {% include "vue/partials/vue_navigation.html" %} 
 {% include "vue/partials/vue_readnext.html" %}
+{% include "vue/partials/vue_detail.html" %}
 {% include "vue/partials/vue_list.html" %}
+
 
     <!-- Latest compiled and minified JavaScript -->
  

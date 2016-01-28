@@ -1,0 +1,33 @@
+<script type="text/x-template" id="detail_temp">
+{% verbatim %}
+   
+
+<div class='container-fluid'>
+    <div class='row'>
+        <div class='col-sm-12'>
+            <h1>{{ datapost.title }}</h1>
+        </div>
+    </div>    
+    <div class='row'>
+        <div class='col-sm-12'>
+            <span class="date">{{ datapost.publication_date | date "%A, %B %e, %Y"  }}</span> | <span class="author">{{ datapost.author  }}</span>
+        </div>
+    </div>
+    <div class='row'>    
+        <div class='col-sm-12'>
+                <img style="height:55%;width:100%;border:1px solid black;" :src=datapost.hero_image />
+            </div>
+    </div>
+    <div class='row'>    
+        <div class='col-sm-8'>
+            <div>{{ datapost.bodytext }}</div>
+        </div>
+        <div class='col-sm-4'>
+                <img style="height:45%;width:100%;border:1px solid black;" :src=datapost.optional_image />
+            </div>
+    </div>
+</div>
+        
+
+{% endverbatim %}
+</script>

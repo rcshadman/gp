@@ -20,9 +20,7 @@ urlpatterns = patterns('',
 
 
                        url(r'^vue/$', views.vue, name='vue'),
-                       # url(r'^vue/$', views.vue_list, name='list'),
-                       # url(r'^vue/(?P<id>\d+)/$', views.vue_article, name='article'),
-
+                       
 
 
                        )
