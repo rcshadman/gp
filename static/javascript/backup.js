@@ -1,4 +1,8 @@
-BaseUrl = "/demo/vue";
+
+
+
+
+BaseUrl = "/demo/vue/";
 var model={
     allPost:[],
     randomPost:{},
@@ -31,26 +35,53 @@ var fetchPostWithId = function(id){
 
 
 
-var navigation_view = Vue.extend({
-  template: '#navigation_temp',
+var navigation = Vue.extend({
+  template: '#navigation_temp'
+})
+// register
+Vue.component('navigation', navigation)
+
+// create a root instance
+new Vue({
+  el: '#navigation'
 })
 
 
-
 // create a root instance
-var readnext_view =Vue.extend({
-        //
-        template:'#readnext_temp',
-        data:function(){ return { allPost:[],datarandomfour:[] }},
+new Vue({
+        el: '#readnext',
+        data:model,
+        components:{
+            'readnext':{
+                template:'#readnext_temp',
+                props: {
+                    // datamodel:Object,
+                    dataallpost:Array,
+                    datarandomfour:Array,
+                    datarandom:Object,
+                        },
+                    }
+            },
         methods:{
-                fetchAllPost:function()
-                {
+        fetchAllPost:function()
+        {
                 this.$http.get('api/')
                 .success(function(response){ 
                     this.$set('allPost', response);
-                    randomfour=generateRandom(4,this.allPost);
-                    this.$set('datarandomfour',randomfour);
+                    this.$set('model.allPost', this.allPost);
                     
+                    randompost=generateRandom(1,this.allPost);
+                    this.$set('randomPost',randompost[0]);
+                    this.$set('model.randomPost',randompost[0]);
+                    setTimeout(1200);
+                    
+                    randomfour=generateRandom(4,this.allPost);
+                    this.$set('readNext',randomfour);
+                    this.$set('model.readNext',randomfour);
+                    console.log(this.model)
+                    console.log(this.allPost)
+                    console.log(this.randomPost)
+                    console.log(this.readNext)
                     
                     })
                             
@@ -120,31 +151,28 @@ var list_page = Vue.extend({
 })
 
 
-var app_view = Vue.extend({
-    template:'#app_temp',
-    components:{
-        'navigation':navigation_view,
-        'readnext':readnext_view
 
-    }
-})
 
 
 
 Vue.use(VueRouter)
-var router = new VueRouter();
+var router = new VueRouter({
+     history: false,
+     root: '/'
+});
 
 
 routes = {
-        '/':{
-            name:'root',
-            component:app_view,
-            subRoutes:{
-                '/':{ name:'list', component : list_page},
-                '/:postid':{name:'detail',component: detail_page,}
-            }
+        '/': {
+            name:'list',
+            component: list_page
         },
+        '/:postid': {
+             name:'detail',
+             component: detail_page,
 
+        },
+        
     }
 router.map(routes)
 
@@ -153,4 +181,42 @@ var App = Vue.extend({})
 router.start(App, '#App')
 
 
+// redirects = {
 
+//   //redirect any navigation to /a to /b
+//   '/': '/',
+
+//   //redirect can contain dynamic segments
+//   //the dynamic segment names must match
+//   '/user/:userId': '/profile/:userId',
+
+//   //redirect any not-found route to home
+//   '*': '/'
+// }
+// router.redirect(redirects)
+
+
+// var App = new Vue({
+//     el:'#App',
+//     data:model,
+//     components:{
+//             'detail':{
+//                 template:'#detail_temp',
+//                 props: {
+//                     datamodel:Object,
+//                     dataallpost:Array,
+//                         },
+//                 },
+//             'list':{
+//                 template:'#list_temp',
+//                 props: {
+//                     datamodel:Object,
+//                     dataallpost:Array,
+//                     datarandom:Object,
+//                         },
+//                     }
+
+
+
+//             }
+// })

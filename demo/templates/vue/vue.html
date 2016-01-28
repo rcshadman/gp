@@ -1,4 +1,5 @@
 {% load staticfiles %}
+
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -11,38 +12,36 @@
         <link rel= "stylesheet" href='{% static "css/style.css" %} '>
     </head>
 <body>
-    
-    <div class="container-fluid">
-        <!-- <div  id="App" v-cloak> -->
-                <div class="row">
-                        <div id="navigation" class='col-sm-2' style='margin-top:3%'>
-                            <navigation></navigation>
-                        </div>
-                         <div id="App" class='col-sm-10' v-cloak>
-                            <router-view></router-view>
-                        </div>
-                </div>
-                <div class="row">
-                    <div id = "readnext" class='col-sm-10 col-sm-offset-2' >
-                        <readnext  :datarandomfour='readNext' :dataallpost='allPost' :datarandom='randomPost'>
-                        </readnext>
-                    
-                    </div>
-                </div>
-         
-        <!-- </div> -->
-        
-    </div>
-    
-    
-   
-   
-    
      
 {% include "vue/partials/vue_navigation.html" %} 
 {% include "vue/partials/vue_readnext.html" %}
 {% include "vue/partials/vue_detail.html" %}
 {% include "vue/partials/vue_list.html" %}
+<script type="text/x-template" id='app_temp'>
+    <div class="row">
+            <div id="" class='col-sm-2' style='margin-top:3%'>
+                <navigation></navigation>
+            </div>
+             <div class='col-sm-10'>
+                <router-view></router-view>
+            </div>
+    </div>
+    <div class="row">
+        <div id = "" class='col-sm-10 col-sm-offset-2'>
+            <readnext></readnext>
+        </div>
+    </div>
+ </script>  
+   
+<div class="container-fluid">
+        <div  id="App" v-cloak>
+                <router-view></router-view>
+         
+        </div>
+        
+</div>
+    
+
 
 
     <!-- Latest compiled and minified JavaScript -->

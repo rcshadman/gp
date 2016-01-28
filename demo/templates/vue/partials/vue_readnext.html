@@ -22,30 +22,30 @@
           
           <div  v-for="each in datarandomfour"  track-by="$index" class="col-sm-3" style="margin-top:15px;padding:0;">  
               <div v-if="$index == 0" style="margin-left:0;margin-right:5px">
-                  <a href="{{BaseUrl}}/{{ each.id }}">
+                  <a v-link = "{ name: 'detail', params:{ postid:each.id }}">
                   <img style="height:30%;width:100%;border:1px solid black;" :src=each.hero_image />
                   </a>
-                  <h4><a href="{{BaseUrl}}/{{ each.id }}">{{ each.title }}</a></h4>
+                  <h4><a v-link = "{ name: 'detail', params:{ postid:each.id }}">{{ each.title }}</a></h4>
               </div>  
               
               <div v-if="$index == 3" style="margin-left:5px;margin-right:0">
-                  <a href="{{BaseUrl}}/{{ each.id }}">
+                  <a v-link = "{ name: 'detail', params:{ postid:each.id }}">
                   <img style="height:30%;width:100%;border:1px solid black;" :src=each.hero_image />
                   </a>
-                  <h4><a href="{{BaseUrl}}/{{ each.id }}">{{ each.title }}</a></h4>
+                  <h4><a v-link = "{ name: 'detail', params:{ postid:each.id }}">{{ each.title }}</a></h4>
               </div>
              
               <div v-if="$index == 1" style="margin-right:5px;margin-left:5px">
-                  <a href="{{BaseUrl}}/{{ each.id }}">
+                  <a v-link = "{ name: 'detail', params:{ postid:each.id }}">
                   <img style="height:30%;width:100%;border:1px solid black;" :src=each.hero_image />
                   </a>
-                  <h4><a href="{{BaseUrl}}/{{ each.id }}">{{ each.title}}</a></h4>
+                  <h4><a v-link = "{ name: 'detail', params:{ postid:each.id }}">{{ each.title}}</a></h4>
               </div>
               <div v-if="$index == 2" style="margin-right:5px;margin-left:5px">
-                  <a href="{{BaseUrl}}/{{ each.id }}">
+                  <a v-link = "{ name: 'detail', params:{ postid:each.id }}">
                   <img style="height:30%;width:100%;border:1px solid black;" :src=each.hero_image />
                   </a>
-                  <h4><a href="{{BaseUrl}}/{{ each.id }}">{{ each.title}}</a></h4>
+                  <h4><a v-link = "{ name: 'detail', params:{ postid:each.id }}">{{ each.title}}</a></h4>
               </div>
            
            </div> 
