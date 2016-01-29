@@ -1,4 +1,4 @@
-BaseUrl = "/demo/vue";
+BaseUrl = "/demo/vue/";
 var model={
     allPost:[],
     randomPost:{},
@@ -107,17 +107,32 @@ var list_page = Vue.extend({
                     this.$set('dataallpost', response);
                     randompost=generateRandom(1,this.dataallpost);
                     this.$set('datarandom',randompost[0]);
-                    setTimeout(600);
+                    // setTimeout(600);
                     
                     })
                             
                 }
     
              },
-        ready:function(){this.fetchAllPost();}
-     
+        ready:function(){this.fetchAllPost();},
+        filters:{
+            // truncate:function (str, length, truncation) {
+            //       length = length || 5000;
+            //       truncation = typeof truncation === "string" ? truncation : "...";
+            //       str=this.el.textContent;
+            //       return (str.length + truncation.length > length ? str.slice(0, length - truncation.length) : str) + truncation;
+            //   },
+            truncates:function (text, length, clamp) {
+                clamp = clamp || '...';
+                var node = document.createElement('div');
+                node.innerHTML = text;
+                var content = node.textContent;
+                return content.length > length ? content.slice(0, length) + clamp : content;
 
-})
+
+                }
+            }
+            })
 
 
 var app_view = Vue.extend({
@@ -132,7 +147,11 @@ var app_view = Vue.extend({
 
 
 Vue.use(VueRouter)
-var router = new VueRouter();
+var router = new VueRouter({
+    'hashbang':false,
+    'root':'#/',
+    'history':false
+});
 
 
 routes = {
@@ -140,13 +159,32 @@ routes = {
             name:'root',
             component:app_view,
             subRoutes:{
-                '/':{ name:'list', component : list_page},
-                '/:postid':{name:'detail',component: detail_page,}
+                '/':{
+                         name:'list',
+                          component : list_page
+                      },
+                '/:postid':{
+                        name:'detail',
+                        component: detail_page,
+                    }
             }
         },
 
     }
 router.map(routes)
+
+// router.redirect({
+
+//   //redirect any navigation to /a to /b
+//   '/list/': '/',
+
+//   //redirect can contain dynamic segments
+//   //the dynamic segment names must match
+//   // '/user/:userId': '/profile/:userId',
+
+//   //redirect any not-found route to home
+//   // '*': '/'
+// })
 
 
 var App = Vue.extend({})
